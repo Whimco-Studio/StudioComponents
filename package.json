@@ -1,0 +1,15 @@
+{
+  "name": "@rbxts/StudioComponents",
+  "version": "1.0.0",
+  "main": "src/init.lua",
+  "repository": "https://github.com/Rudy-Dev/StudioComponents.git",
+  "author": "Wiktor Rudnicki <mazepianko@gmail.com>",
+  "license": "MIT",
+  "types": "src/index.d.ts",
+  "devDependencies": {
+    "@rbxts/compiler-types": "^2.0.4-types.0",
+    "@rbxts/roact": "*",
+    "@rbxts/roact-hooks": "^0.4.1-ts.3",
+    "@rbxts/types": "^1.0.648"
+  }
+}

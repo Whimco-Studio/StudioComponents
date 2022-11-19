@@ -12,3 +12,5 @@ sourcemap.json
 /out
 /site
 /archived
+
+/node_modules
