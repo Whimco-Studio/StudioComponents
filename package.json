@@ -6,6 +6,9 @@
   "author": "sircfenner, RudyDev",
   "license": "MIT",
   "types": "src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@rbxts/compiler-types": "^2.0.4-types.0",
     "@rbxts/roact": "*",
