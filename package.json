@@ -1,9 +1,9 @@
 {
-  "name": "@rbxts/StudioComponents",
+  "name": "@rbxts/studiocomponents",
   "version": "1.0.0",
   "main": "src/init.lua",
   "repository": "https://github.com/Rudy-Dev/StudioComponents.git",
-  "author": "Wiktor Rudnicki <mazepianko@gmail.com>",
+  "author": "sircfenner, RudyDev",
   "license": "MIT",
   "types": "src/index.d.ts",
   "devDependencies": {

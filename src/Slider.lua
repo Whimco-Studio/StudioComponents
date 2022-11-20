@@ -83,7 +83,7 @@ local function Slider(props, hooks)
 		Text = "",
 		Active = false,
 		AutoButtonColor = false,
-		Size = UDim2.new(1, 0, 0, 22),
+		Size = props.Size or UDim2.new(1, 0, 0, 22),
 		Position = props.Position,
 		AnchorPoint = props.AnchorPoint,
 		LayoutOrder = props.LayoutOrder,

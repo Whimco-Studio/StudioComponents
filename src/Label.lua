@@ -22,6 +22,8 @@ local defaultProps = {
 	BackgroundTransparency = 1,
 	BorderSizePixel = 0,
 	BorderMode = Enum.BorderMode.Inset,
+	Position = UDim2.fromScale(0.5, 0),
+	AnchorPoint = Vector2.new(0.5, 0),
 	-- BackColorStyle?
 	-- BorderColorStyle?
 }

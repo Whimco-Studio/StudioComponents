@@ -21,7 +21,7 @@ local defaultProps = {
 local function Checkbox(props, hooks)
 	local theme = useTheme(hooks)
 	local hovered, setHovered = hooks.useState(false)
-
+ 
 	local onInputBegan = function(_, inputObject)
 		if props.Disabled then
 			return
@@ -86,6 +86,7 @@ local function Checkbox(props, hooks)
 		BackgroundTransparency = 1,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
+		Position = props.Position,
 	}, {
 		Button = Roact.createElement("TextButton", {
 			Text = "",
@@ -119,6 +120,7 @@ local function Checkbox(props, hooks)
 			Position = UDim2.fromScale(textPositionX, 0),
 			Size = UDim2.new(1, -20, 1, 0),
 			TextXAlignment = textAlign,
+			RichText = props.RichText,
 			TextTruncate = Enum.TextTruncate.AtEnd,
 			Text = props.Label,
 			Font = Constants.Font,

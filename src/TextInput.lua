@@ -94,6 +94,7 @@ function TextInput:render()
 			or Roact.createElement(
 				"TextBox",
 				joinDictionaries(textFieldProps, {
+					AnchorPoint = self.props.AnchorPoint,
 					PlaceholderText = self.props.PlaceholderText,
 					PlaceholderColor3 = PLACEHOLDER_TEXT_COLOR,
 					ClearTextOnFocus = self.props.ClearTextOnFocus,
