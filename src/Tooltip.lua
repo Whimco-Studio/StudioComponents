@@ -1,11 +1,6 @@
 local TextService = game:GetService("TextService")
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local rbxts_include = ReplicatedStorage:FindFirstChild("rbxts_include")
-if not rbxts_include then
-	rbxts_include = script:FindFirstAncestor("node_modules").Parent
-end
-local TS = require(rbxts_include.RuntimeLib)
+local TS = _G[script.Parent]
 
 local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
