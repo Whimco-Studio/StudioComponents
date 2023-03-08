@@ -1,5 +1,6 @@
-local Packages = script.Parent.Parent
-local Roact = require(Packages.Roact)
+local TS = _G[script.Parent]
+
+local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
 
 local Checkbox = require(script.Parent.Checkbox)
 local Constants = require(script.Parent.Constants)

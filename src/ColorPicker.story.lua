@@ -1,5 +1,6 @@
-local Packages = script.Parent.Parent
-local Roact = require(Packages.Roact)
+local TS = _G[script.Parent]
+
+local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
 
 local ColorPicker = require(script.Parent.ColorPicker)
 local Label = require(script.Parent.Label)
