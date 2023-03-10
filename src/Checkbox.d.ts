@@ -1,6 +1,6 @@
 import { Element } from "@rbxts/roact";
 
-type ICheckBoxProps = {
+type ICheckboxProps = {
   Disabled?: boolean;
   Value?: boolean;
   Label: string;
@@ -8,4 +8,4 @@ type ICheckBoxProps = {
   OnActivated?: () => void;
 } & Partial<WritableProperties<Frame>>;
 
-export const Checkbox: (props: ICheckBoxProps) => Element;
+export const Checkbox: (props: ICheckboxProps) => Element;

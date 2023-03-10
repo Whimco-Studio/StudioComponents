@@ -1,6 +1,6 @@
 export * from "./Background";
 export * from "./Button";
-export * from "./CheckBox";
+export * from "./Checkbox";
 export * from "./Dropdown";
 export * from "./Dropdown";
 export * from "./Label";
