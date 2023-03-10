@@ -13,5 +13,5 @@ export * from "./TabContainer";
 export * from "./TextInput";
 export * from "./Tooltip";
 export * from "./VerticalCollapsibleSection";
-export * from "./VerticalCollapsibleSection";
+export * from "./VerticalExpandingList";
 export * from "./Widget";
