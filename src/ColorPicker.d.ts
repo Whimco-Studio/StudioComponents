@@ -1,8 +1,8 @@
-import { Element } from "@rbxts/roact"
+import { Element } from "@rbxts/roact";
 
 type IColorPickerProps = {
-    Color: Color3;
-    OnColorChanged: (color: Color3) => void;
-} & Partial<WritableProperties<Frame>>
+  Color: Color3;
+  OnColorChanged: (color: Color3) => void;
+} & Partial<WritableProperties<Frame>>;
 
-export const ColorPicker: (props: IColorPickerProps) => Element
+export const ColorPicker: (props: IColorPickerProps) => Element;
