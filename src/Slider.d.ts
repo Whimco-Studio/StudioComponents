@@ -1,6 +1,6 @@
 import Roact, { Element } from "@rbxts/roact";
 
-type IBackgroundProps = {
+type ISliderBackgroundProps = {
     Disabled?: boolean;
     Hover: boolean;
     Dragging: boolean;
@@ -15,8 +15,8 @@ type ISliderProps = {
     Step?: number;
     Disabled?: boolean;
     Background?:
-        | Roact.FunctionComponent<IBackgroundProps>
-        | Roact.ComponentConstructor<IBackgroundProps>;
+        | Roact.FunctionComponent<ISliderBackgroundProps>
+        | Roact.ComponentConstructor<ISliderBackgroundProps>;
 } & Partial<
     Pick<Frame, "Size" | "Position" | "AnchorPoint" | "LayoutOrder" | "ZIndex">
 >;
