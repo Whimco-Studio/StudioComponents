@@ -1,12 +1,10 @@
 import { Element } from "@rbxts/roact";
+import { IBaseButtonProps } from "BaseButton";
+import { PartialBy } from "UtilityTypes";
 
-type IMainButtonProps = {
-  Disabled?: boolean;
-  Selected?: boolean;
-  TextColorStyle?: Enum.StudioStyleGuideColor;
-  BackgroundColorStyle?: Enum.StudioStyleGuideColor;
-  BorderColorStyle?: Enum.StudioStyleGuideColor;
-  OnActivated: () => void;
-} & Partial<WritableProperties<TextButton>>;
+type IMainButtonProps = PartialBy<
+  IBaseButtonProps,
+  "TextColorStyle" | "BackgroundColorStyle" | "BorderColorStyle"
+>;
 
 export const MainButton: (props: IMainButtonProps) => Element;

@@ -1,14 +1,15 @@
 import { Element } from "@rbxts/roact";
 
-type IVerticalExpandingListProps = {
-  LayoutOrder?: number;
-  ZIndex?: number;
-  BackgroundTransparency?: number;
-  BackgroundColorStyle?: Enum.StudioStyleGuideColor;
-  BorderSizePixel?: number;
-  BorderColorStyle?: Enum.StudioStyleGuideColor;
-  Padding?: number;
-} & Partial<WritableProperties<Frame>>;
+type IVerticalExpandingListProps = Partial<
+  {
+    Padding: number;
+    BorderColorStyle: Enum.StudioStyleGuideColor;
+    BackgroundColorStyle: Enum.StudioStyleGuideColor;
+  } & Pick<
+    Frame,
+    "LayoutOrder" | "ZIndex" | "BorderSizePixel" | "BackgroundTransparency"
+  >
+>;
 
 export const VerticalExpandingList: (
   props: IVerticalExpandingListProps

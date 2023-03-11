@@ -9,10 +9,6 @@ type IDropdownProps<T extends string> = {
   RowHeightTop?: number;
   RowHeightItem?: number;
   Width?: UDim;
-  Position?: UDim2;
-  AnchorPoint?: Vector2;
-  LayoutOrder?: number;
-  ZIndex?: number;
-};
+} & Partial<Pick<Frame, "Position" | "AnchorPoint" | "LayoutOrder" | "ZIndex">>;
 
 export const Dropdown: <T extends string>(props: IDropdownProps<T>) => Element;
