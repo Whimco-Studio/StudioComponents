@@ -1,6 +1,6 @@
 import { Element } from "@rbxts/roact";
 
-type IBaseButtonProps = Partial<
+export type IBaseButtonProps = Partial<
     {
         Disabled: boolean;
         Selected: boolean;

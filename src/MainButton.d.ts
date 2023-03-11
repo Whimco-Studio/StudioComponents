@@ -1,10 +1,6 @@
 import { Element } from "@rbxts/roact";
-import { IBaseButtonProps } from "BaseButton";
-import { PartialBy } from "UtilityTypes";
+import { IBaseButtonProps } from "./BaseButton";
 
-type IMainButtonProps = PartialBy<
-    IBaseButtonProps,
-    "TextColorStyle" | "BackgroundColorStyle" | "BorderColorStyle"
->;
+type IMainButtonProps = IBaseButtonProps;
 
 export const MainButton: (props: IMainButtonProps) => Element;
