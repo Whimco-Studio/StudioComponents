@@ -1,13 +1,18 @@
-import { Element } from "@rbxts/roact"
+import { Element } from "@rbxts/roact";
 
-export type ITab = {
-    Name: string;
-    Disabled: boolean;
-}
+export type ITab<N extends string> = {
+    Name: N;
+    Disabled?: boolean;
+};
 
-type ITabContainerProps<T extends readonly ITab[]> = {
-    Tabs: T;
-    OnTabSelected: (tab: T[number]["Name"]) => void;
-} & Partial<WritableProperties<Frame>>
+type ITabContainerProps<N extends string> = {
+    Tabs: ITab<N>[];
+    OnTabSelected: (tab: N) => void;
+    SelectedTab?: N;
+} & Partial<
+    Pick<Frame, "Size" | "Position" | "AnchorPoint" | "LayoutOrder" | "ZIndex">
+>;
 
-export const TabContainer: <T extends readonly ITab[]>(props: ITabContainerProps<T>) => Element
+export const TabContainer: <N extends string>(
+    props: ITabContainerProps<N>
+) => Element;

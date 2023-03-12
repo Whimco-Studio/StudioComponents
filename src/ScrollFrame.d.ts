@@ -1,18 +1,23 @@
-import { Element } from "@rbxts/roact"
+import { Element } from "@rbxts/roact";
 
-type DefaultLayout = {
-    ClassName: string,
-    SortOrder: Enum.SortOrder.LayoutOrder,
-}
+type IScrollFrame = Partial<
+    {
+        Disabled: boolean;
+        OnScrolled: (pos: Vector2) => void;
+        Layout: {
+            ClassName?: string;
+            SortOrder?: Enum.SortOrder.LayoutOrder;
+        };
+    } & Pick<
+        ScrollingFrame,
+        | "AnchorPoint"
+        | "BorderSizePixel"
+        | "LayoutOrder"
+        | "Position"
+        | "ScrollingDirection"
+        | "Size"
+        | "ZIndex"
+    >
+>;
 
-type IScrollFrame = {
-    Disabled?: false,
-	ScrollingDirection?: Enum.ScrollingDirection.Y,
-	BorderSizePixel?: number,
-	LayoutOrder?: number,
-	ZIndex?: number,
-	OnScrolled?: (vector: Vector2) => void,
-	Layout?: DefaultLayout,
-} & Partial<WritableProperties<Frame>>
-
-export const ScrollFrame: (props: IScrollFrame) => Element
+export const ScrollFrame: (props: IScrollFrame) => Element;

@@ -9,16 +9,16 @@ interface IConstants {
     };
     CheckboxIndeterminate: "Indeterminate";
 
-    SplitterOrientation: {  
+    SplitterOrientation: {
         Horizontal: "Horizontal";
         Vertical: "Vertical";
-    }
+    };
     ZIndex: {
         Dropdown: number;
         Tooltip: number;
-    }
+    };
 }
 
-declare const Constants: IConstants
+declare const Constants: IConstants;
 
 export = Constants;

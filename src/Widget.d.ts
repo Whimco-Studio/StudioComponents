@@ -1,13 +1,13 @@
-import { Element } from "@rbxts/roact"
-
+import { Element } from "@rbxts/roact";
 
 type IWidgetProps = {
-	Title: string,
-	Name: string,
-	InitialDockState?: Enum.InitialDockState,
-	FloatingWindowSize?: Vector2,
-	MinimumWindowSize?: Vector2,
-	OnClosed?: () => void,
-} & Partial<WritableProperties<Frame>>
+    Id: string;
+    Title?: string;
+    Name?: string;
+    InitialDockState?: Enum.InitialDockState;
+    FloatingWindowSize?: Vector2;
+    MinimumWindowSize?: Vector2;
+    OnClosed?: () => void;
+};
 
-export const Widget:(props: IWidgetProps) => Element
+export const Widget: (props: IWidgetProps) => Element;

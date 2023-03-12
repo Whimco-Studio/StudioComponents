@@ -1,9 +1,8 @@
-import { Element } from "@rbxts/roact"
+import { Element } from "@rbxts/roact";
 
 type ILabelProps = {
     Disabled?: boolean;
     TextColorStyle?: Enum.StudioStyleGuideColor;
-} & Partial<WritableProperties<TextLabel>>
+} & Partial<Omit<WritableInstanceProperties<TextLabel>, "TextColor3">>;
 
-
-export const Label: (props: ILabelProps) => Element
+export const Label: (props: ILabelProps) => Element;

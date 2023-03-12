@@ -1,12 +1,16 @@
-import { Element } from "@rbxts/roact"
+import { Element } from "@rbxts/roact";
 
 type ISplitterProps<T> = {
-    Disabled?: boolean,
-	Size?: UDim2,
-    MinAlpha?: number,
-	MaxAlpha?: number,
-    Orientation?: "Horizontal" | "Vertical",
-    OnAlphaChanged: (alpha: number) => void,
-} & Partial<WritableProperties<Frame>>
+    Alpha: number;
+    OnAlphaChanged: (alpha: number) => void;
+    Disabled?: boolean;
+    Size?: UDim2;
+    MinAlpha?: number;
+    MaxAlpha?: number;
+    Orientation?: "Horizontal" | "Vertical";
+} & Partial<
+    Pick<Frame, "Size" | "Position" | "AnchorPoint" | "ZIndex" | "LayoutOrder">
+>;
 
-export const Splitter: <T>(props: ISplitterProps<T>) => Element
+/** **Note: Needs two child elements.** */
+export const Splitter: <T>(props: ISplitterProps<T>) => Element;

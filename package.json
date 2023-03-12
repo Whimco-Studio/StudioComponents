@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "@rbxts/compiler-types": "^2.1.0-types.1",
-    "@rbxts/types": "^1.0.664"
+    "@rbxts/types": "^1.0.664",
+    "prettier": "^2.8.4"
   },
   "peerDependencies": {
     "@rbxts/roact": "^1.4.4-ts.0",
