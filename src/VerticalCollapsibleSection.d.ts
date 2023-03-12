@@ -1,6 +1,6 @@
 import { Element } from "@rbxts/roact";
 
-type IVerticalCollapsibleSectionProps<T> = {
+type IVerticalCollapsibleSectionProps = {
     OnToggled: () => void;
     LayoutOrder?: number;
     ZIndex?: number;
@@ -8,6 +8,6 @@ type IVerticalCollapsibleSectionProps<T> = {
     HeaderText?: string;
 };
 
-export const VerticalCollapsibleSection: <T>(
-    props: IVerticalCollapsibleSectionProps<T>
+export const VerticalCollapsibleSection: (
+    props: IVerticalCollapsibleSectionProps
 ) => Element;
