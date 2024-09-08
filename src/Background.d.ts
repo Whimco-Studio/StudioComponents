@@ -1,4 +1,4 @@
-import { Element } from "@rbxts/roact";
+import { Element } from "@rbxts/react";
 
 type IBackgroundProps = Partial<
     Pick<Frame, "Size" | "Position" | "AnchorPoint" | "LayoutOrder" | "ZIndex">

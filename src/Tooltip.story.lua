@@ -1,5 +1,5 @@
 local Packages = script.Parent.Parent
-local React = require(Packages.Roact)
+local React = require(Packages.React)
 
 local Tooltip = require(script.Parent.Tooltip)
 

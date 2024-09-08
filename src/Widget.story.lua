@@ -1,5 +1,5 @@
 local Packages = script.Parent.Parent
-local React = require(Packages.Roact)
+local React = require(Packages.React)
 
 local Button = require(script.Parent.Button)
 local Widget = require(script.Parent.Widget)

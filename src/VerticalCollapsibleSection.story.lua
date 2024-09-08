@@ -1,5 +1,5 @@
 local Packages = script.Parent.Parent
-local React = require(Packages.Roact)
+local React = require(Packages.React)
 
 local Label = require(script.Parent.Label)
 local VerticalCollapsibleSection = require(script.Parent.VerticalCollapsibleSection)

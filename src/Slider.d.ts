@@ -1,4 +1,4 @@
-import Roact, { Element } from "@rbxts/roact";
+import React, { Element } from "@rbxts/react";
 
 type ISliderBackgroundProps = {
     Disabled?: boolean;

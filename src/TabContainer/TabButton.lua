@@ -1,7 +1,7 @@
 local TS = _G[script.Parent.Parent]
 
 local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
-local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
+local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "pretty-react-hooks").src)
 
 local useTheme = require(script.Parent.Parent.useTheme)
 

@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/Rudy-Dev/StudioComponents.git"
   },
-  "author": "sircfenner, RudyDev",
+  "author": "sircfenner, RudyDev, The_Pr0fessor",
   "license": "MIT",
   "types": "src/index.d.ts",
   "private": false,
@@ -26,11 +26,8 @@
     "roblox-ts": "^2.3.0-dev-6d64be9",
     "typescript": "^5.5.4"
   },
-  "peerDependencies": {
-    "@rbxts/roact": "^1.4.4-ts.0",
-    "@rbxts/roact-hooks": "^0.4.1-ts.3"
-  },
   "dependencies": {
+    "@rbxts/pretty-react-hooks": "^0.6.0",
     "@rbxts/react": "^0.4.0",
     "@rbxts/react-roblox": "^0.4.0",
     "roblox-ts": "^2.3.0"
