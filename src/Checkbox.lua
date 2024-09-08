@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.useTheme)
@@ -16,7 +16,7 @@ local defaultProps = {
 local function Checkbox(props, hooks)
 	local theme = useTheme(hooks)
 	local hovered, setHovered = hooks.useState(false)
- 
+
 	local onInputBegan = function(_, inputObject)
 		if props.Disabled then
 			return
@@ -76,22 +76,22 @@ local function Checkbox(props, hooks)
 		indicatorColor = Color3.fromRGB(255, 255, 255)
 	end
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = UDim2.new(1, 0, 0, 15),
 		BackgroundTransparency = 1,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
 		Position = props.Position,
 	}, {
-		Button = Roact.createElement("TextButton", {
+		Button = React.createElement("TextButton", {
 			Text = "",
 			Size = UDim2.fromScale(1, 1),
 			BackgroundTransparency = 1,
-			[Roact.Event.InputBegan] = onInputBegan,
-			[Roact.Event.InputEnded] = onInputEnded,
-			[Roact.Event.Activated] = onActivated,
+			[React.Event.InputBegan] = onInputBegan,
+			[React.Event.InputEnded] = onInputEnded,
+			[React.Event.Activated] = onActivated,
 		}),
-		Box = Roact.createElement("Frame", {
+		Box = React.createElement("Frame", {
 			AnchorPoint = Vector2.new(boxPositionX, 0),
 			Position = UDim2.fromScale(boxPositionX, 0),
 			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBackground, backModifier),
@@ -99,7 +99,7 @@ local function Checkbox(props, hooks)
 			BorderMode = Enum.BorderMode.Inset,
 			Size = UDim2.fromOffset(15, 15),
 		}, {
-			Indicator = props.Value ~= false and Roact.createElement("ImageLabel", {
+			Indicator = props.Value ~= false and React.createElement("ImageLabel", {
 				Position = UDim2.fromOffset(0, 0),
 				BackgroundTransparency = 1,
 				Size = UDim2.fromOffset(13, 13),
@@ -109,7 +109,7 @@ local function Checkbox(props, hooks)
 				ImageRectSize = Vector2.new(13, 13),
 			}),
 		}),
-		Label = props.Label and Roact.createElement("TextLabel", {
+		Label = props.Label and React.createElement("TextLabel", {
 			BackgroundTransparency = 1,
 			AnchorPoint = Vector2.new(textPositionX, 0),
 			Position = UDim2.fromScale(textPositionX, 0),
@@ -122,10 +122,10 @@ local function Checkbox(props, hooks)
 			TextSize = Constants.TextSize,
 			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
 		}),
-		Children = Roact.createFragment(props[Roact.Children]),
+		Children = React.createFragment(props[React.Children]),
 	})
 end
 
-return Hooks.new(Roact)(Checkbox, {
+return Hooks.new(React)(Checkbox, {
 	defaultProps = defaultProps,
 })

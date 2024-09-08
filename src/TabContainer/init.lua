@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.useTheme)
@@ -18,7 +18,7 @@ local function TabContainer(props, hooks)
 		if isSelectedTab then
 			selectedTabIndex = i
 		end
-		tabs[i] = Roact.createElement(TabButton, {
+		tabs[i] = React.createElement(TabButton, {
 			Size = UDim2.fromScale(1 / #props.Tabs, 1),
 			LayoutOrder = i,
 			Text = tab.Name,
@@ -38,7 +38,7 @@ local function TabContainer(props, hooks)
 		end
 	end
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = props.Size or UDim2.fromScale(1, 1),
 		Position = props.Position or UDim2.fromScale(0, 0),
 		AnchorPoint = props.AnchorPoint or Vector2.new(0, 0),
@@ -47,12 +47,12 @@ local function TabContainer(props, hooks)
 		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
 		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
 	}, {
-		Top = Roact.createElement("Frame", {
+		Top = React.createElement("Frame", {
 			ZIndex = 2,
 			Size = UDim2.new(1, 0, 0, TAB_HEIGHT),
 			BackgroundTransparency = 1,
 		}, {
-			BridgeToSelected = selectedTabIndex and Roact.createElement("Frame", {
+			BridgeToSelected = selectedTabIndex and React.createElement("Frame", {
 				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
 				BorderSizePixel = 0,
 				-- We do not want to cover the leftmost border-size in-between the tabs. Hence, subtracting one pixel (which is the width of the border).
@@ -60,18 +60,18 @@ local function TabContainer(props, hooks)
 				Size = UDim2.new(1 / #props.Tabs, if selectedTabIndex == #props.Tabs then 0 else -1, 0, 1),
 				Position = UDim2.new(1 / #props.Tabs * (selectedTabIndex - 1), 0, 1, 0),
 			}),
-			TabsContainer = Roact.createElement("Frame", {
+			TabsContainer = React.createElement("Frame", {
 				Size = UDim2.fromScale(1, 1),
 				BackgroundTransparency = 1,
 			}, {
-				Tabs = Roact.createFragment(tabs),
-				Layout = Roact.createElement("UIListLayout", {
+				Tabs = React.createFragment(tabs),
+				Layout = React.createElement("UIListLayout", {
 					SortOrder = Enum.SortOrder.LayoutOrder,
 					FillDirection = Enum.FillDirection.Horizontal,
 				}),
 			}),
 		}),
-		Content = Roact.createElement("Frame", {
+		Content = React.createElement("Frame", {
 			ZIndex = 1,
 			AnchorPoint = Vector2.new(0, 1),
 			Position = UDim2.fromScale(0, 1),
@@ -84,4 +84,4 @@ local function TabContainer(props, hooks)
 	})
 end
 
-return Hooks.new(Roact)(TabContainer)
+return Hooks.new(React)(TabContainer)

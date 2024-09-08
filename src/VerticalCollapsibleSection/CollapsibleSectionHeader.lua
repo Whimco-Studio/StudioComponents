@@ -1,11 +1,11 @@
 local TS = _G[script.Parent.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local withTheme = require(script.Parent.Parent.withTheme)
 
 local Label = require(script.Parent.Parent.Label)
-local CollapsibleSectionHeader = Roact.Component:extend("CollapsibleSectionHeader")
+local CollapsibleSectionHeader = React.Component:extend("CollapsibleSectionHeader")
 
 local Constants = require(script.Parent.Parent.Constants)
 local HEADER_HEIGHT = 24
@@ -32,16 +32,16 @@ function CollapsibleSectionHeader:render()
 		modifier = Enum.StudioStyleGuideModifier.Hover
 	end
 	return withTheme(function(theme)
-		return Roact.createElement("Frame", {
+		return React.createElement("Frame", {
 			Active = true,
 			LayoutOrder = 0,
 			Size = UDim2.new(1, 0, 0, HEADER_HEIGHT),
 			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.HeaderSection, modifier),
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
-			[Roact.Event.InputBegan] = self.onInputBegan,
-			[Roact.Event.InputEnded] = self.onInputEnded,
+			[React.Event.InputBegan] = self.onInputBegan,
+			[React.Event.InputEnded] = self.onInputEnded,
 		}, {
-			Icon = Roact.createElement("ImageLabel", {
+			Icon = React.createElement("ImageLabel", {
 				AnchorPoint = Vector2.new(0, 0.5),
 				Position = UDim2.new(0, 7, 0.5, 0),
 				Size = UDim2.fromOffset(10, 10),
@@ -51,13 +51,13 @@ function CollapsibleSectionHeader:render()
 				ImageRectSize = Vector2.new(10, 10),
 				BackgroundTransparency = 1,
 			}),
-			Label = Roact.createElement(Label, {
+			Label = React.createElement(Label, {
 				TextColorStyle = Enum.StudioStyleGuideColor.BrightText,
 				TextXAlignment = Enum.TextXAlignment.Left,
 				Font = Constants.FontBold,
 				Text = self.props.Text,
 			}, {
-				Padding = Roact.createElement("UIPadding", {
+				Padding = React.createElement("UIPadding", {
 					PaddingLeft = UDim.new(0, 24),
 				}),
 			}),

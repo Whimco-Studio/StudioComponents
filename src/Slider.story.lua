@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Slider = require(script.Parent.Slider)
 local Checkbox = require(script.Parent.Checkbox)
@@ -12,14 +12,14 @@ local MAX = 10
 local STEP = 1
 local INIT = 3
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({ Disabled = false, Value = INIT })
 end
 
 function Wrapper.renderCustomBackground(props)
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		BackgroundColor3 = Color3.fromHSV(210 / 360, props.Value / 10, if props.Disabled then 0.25 else 0.8),
 		Size = UDim2.fromScale(1, 1),
 		BorderSizePixel = 0,
@@ -27,19 +27,19 @@ function Wrapper.renderCustomBackground(props)
 end
 
 function Wrapper:render()
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Position = UDim2.fromScale(0.5, 0.5),
 		Size = UDim2.new(0, 100, 1, 0),
 		BackgroundTransparency = 1,
 	}, {
-		Layout = Roact.createElement("UIListLayout", {
+		Layout = React.createElement("UIListLayout", {
 			FillDirection = Enum.FillDirection.Vertical,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 			SortOrder = Enum.SortOrder.LayoutOrder,
 			Padding = UDim.new(0, 8),
 		}),
-		Slider0 = Roact.createElement(Slider, {
+		Slider0 = React.createElement(Slider, {
 			Min = MIN,
 			Max = MAX,
 			Step = STEP,
@@ -50,7 +50,7 @@ function Wrapper:render()
 			end,
 			LayoutOrder = 0,
 		}),
-		Slider1 = Roact.createElement(Slider, {
+		Slider1 = React.createElement(Slider, {
 			Min = MIN,
 			Max = MAX,
 			Step = STEP,
@@ -62,7 +62,7 @@ function Wrapper:render()
 			end,
 			LayoutOrder = 1,
 		}),
-		Disabled = Roact.createElement(Checkbox, {
+		Disabled = React.createElement(Checkbox, {
 			Value = self.state.Disabled,
 			Label = "Disabled",
 			Alignment = Constants.CheckboxAlignment.Left,
@@ -75,9 +75,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

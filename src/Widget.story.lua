@@ -1,10 +1,10 @@
 local Packages = script.Parent.Parent
-local Roact = require(Packages.Roact)
+local React = require(Packages.Roact)
 
 local Button = require(script.Parent.Button)
 local Widget = require(script.Parent.Widget)
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -13,8 +13,8 @@ function Wrapper:init()
 end
 
 function Wrapper:render()
-	return Roact.createFragment({
-		Button = Roact.createElement(Button, {
+	return React.createFragment({
+		Button = React.createElement(Button, {
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			Position = UDim2.fromScale(0.5, 0.5),
 			Size = UDim2.fromOffset(120, 30),
@@ -23,7 +23,7 @@ function Wrapper:render()
 				self:setState({ Enabled = not self.state.Enabled })
 			end,
 		}),
-		Widget = self.state.Enabled and Roact.createElement(Widget, {
+		Widget = self.state.Enabled and React.createElement(Widget, {
 			Id = "_unique101",
 			OnClosed = function()
 				self:setState({ Enabled = false })
@@ -33,9 +33,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

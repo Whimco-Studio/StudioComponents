@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local Constants = require(script.Parent.Constants)
@@ -37,7 +37,7 @@ local function Splitter(props, hooks)
 	local theme = useTheme(hooks)
 	local plugin = usePlugin(hooks)
 
-	local containerRef = hooks.useValue(Roact.createRef())
+	local containerRef = hooks.useValue(React.createRef())
 
 	local drag = useDragInput(hooks, function(_, position)
 		local container = containerRef.value:getValue()
@@ -104,30 +104,30 @@ local function Splitter(props, hooks)
 	local barColor = theme:GetColor(Enum.StudioStyleGuideColor.DialogButton)
 	local flip = props.Orientation ~= Constants.SplitterOrientation.Vertical
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = props.Size,
 		Position = props.Position,
 		AnchorPoint = props.AnchorPoint,
 		ZIndex = props.ZIndex,
 		LayoutOrder = props.LayoutOrder,
 		BackgroundTransparency = 1,
-		[Roact.Ref] = containerRef.value,
+		[React.Ref] = containerRef.value,
 	}, {
-		Side0 = Roact.createElement("Frame", {
+		Side0 = React.createElement("Frame", {
 			Size = maybeFlip(flip, UDim2.new(alpha, -HANDLE_THICKNESS / 2, 1, 0)),
 			BackgroundTransparency = 1,
 			ZIndex = 0,
 			ClipsDescendants = true,
-		}, { Content = props[Roact.Children][1] }),
-		Side1 = Roact.createElement("Frame", {
+		}, { Content = props[React.Children][1] }),
+		Side1 = React.createElement("Frame", {
 			AnchorPoint = maybeFlip(flip, Vector2.new(1, 0)),
 			Position = maybeFlip(flip, UDim2.fromScale(1, 0)),
 			Size = maybeFlip(flip, UDim2.new(1 - alpha, -HANDLE_THICKNESS / 2, 1, 0)),
 			BackgroundTransparency = 1,
 			ZIndex = 0,
 			ClipsDescendants = true,
-		}, { Content = props[Roact.Children][2] }),
-		Bar = Roact.createElement("TextButton", {
+		}, { Content = props[React.Children][2] }),
+		Bar = React.createElement("TextButton", {
 			Active = false,
 			AutoButtonColor = false,
 			Text = "",
@@ -138,12 +138,12 @@ local function Splitter(props, hooks)
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
 			BackgroundTransparency = props.Disabled and 0.75 or 0,
 			ZIndex = 1,
-			[Roact.Event.InputBegan] = if not props.Disabled then drag.onInputBegan else nil,
-			[Roact.Event.InputEnded] = if not props.Disabled then drag.onInputEnded else nil,
+			[React.Event.InputBegan] = if not props.Disabled then drag.onInputBegan else nil,
+			[React.Event.InputEnded] = if not props.Disabled then drag.onInputEnded else nil,
 		}),
 	})
 end
 
-return Hooks.new(Roact)(Splitter, {
+return Hooks.new(React)(Splitter, {
 	defaultProps = defaultProps,
 })

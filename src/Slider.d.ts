@@ -15,8 +15,8 @@ type ISliderProps = {
     Step?: number;
     Disabled?: boolean;
     Background?:
-        | Roact.FunctionComponent<ISliderBackgroundProps>
-        | Roact.ComponentConstructor<ISliderBackgroundProps>;
+        | React.FunctionComponent<ISliderBackgroundProps>
+        | React.ComponentConstructor<ISliderBackgroundProps>;
 } & Partial<
     Pick<Frame, "Size" | "Position" | "AnchorPoint" | "LayoutOrder" | "ZIndex">
 >;

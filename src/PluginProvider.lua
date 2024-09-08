@@ -2,7 +2,7 @@ local HttpService = game:GetService("HttpService")
 
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local PluginContext = require(script.Parent.PluginContext)
@@ -35,13 +35,13 @@ local function PluginProvider(props, hooks)
 		updateMouseIcon()
 	end
 
-	return Roact.createElement(PluginContext.Provider, {
+	return React.createElement(PluginContext.Provider, {
 		value = {
 			plugin = plugin,
 			pushMouseIcon = pushMouseIcon,
 			popMouseIcon = popMouseIcon,
 		},
-	}, props[Roact.Children])
+	}, props[React.Children])
 end
 
-return Hooks.new(Roact)(PluginProvider)
+return Hooks.new(React)(PluginProvider)

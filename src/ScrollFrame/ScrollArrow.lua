@@ -1,13 +1,13 @@
 local TS = _G[script.Parent.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local RunService = game:GetService("RunService")
 
 local joinDictionaries = require(script.Parent.Parent.joinDictionaries)
 local withTheme = require(script.Parent.Parent.withTheme)
 
-local ScrollArrow = Roact.Component:extend("ScrollArrow")
+local ScrollArrow = React.Component:extend("ScrollArrow")
 
 local ScrollConstants = require(script.Parent.Constants)
 
@@ -108,13 +108,13 @@ function ScrollArrow:render()
 			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
 		}
-		return self.props.Disabled and Roact.createElement("ImageLabel", baseProps)
-			or Roact.createElement(
+		return self.props.Disabled and React.createElement("ImageLabel", baseProps)
+			or React.createElement(
 				"ImageButton",
 				joinDictionaries(baseProps, {
 					AutoButtonColor = false,
-					[Roact.Event.InputBegan] = self.onInputBegan,
-					[Roact.Event.InputEnded] = self.onInputEnded,
+					[React.Event.InputBegan] = self.onInputBegan,
+					[React.Event.InputEnded] = self.onInputEnded,
 				})
 			)
 	end)

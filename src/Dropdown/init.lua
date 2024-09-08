@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local Constants = require(script.Parent.Constants)
@@ -31,7 +31,7 @@ local function Dropdown(props, hooks)
 	local open, setOpen = hooks.useState(false)
 	local hovered, setHovered = hooks.useState(false)
 
-	local rootRef = hooks.useValue(Roact.createRef())
+	local rootRef = hooks.useValue(React.createRef())
 
 	local onSelectedInputBegan = function(_, input)
 		local t = input.UserInputType
@@ -74,7 +74,7 @@ local function Dropdown(props, hooks)
 	local items = {}
 	if open and not props.Disabled then
 		for i, item in ipairs(props.Items) do
-			items[i] = Roact.createElement(DropdownItem, {
+			items[i] = React.createElement(DropdownItem, {
 				Item = item,
 				LayoutOrder = i,
 				OnSelected = onSelectedItem,
@@ -130,17 +130,17 @@ local function Dropdown(props, hooks)
 				posy -= props.RowHeightTop
 			end
 
-			catcher = Roact.createElement(Roact.Portal, {
+			catcher = React.createElement(React.Portal, {
 				target = target,
 			}, {
-				Frame = Roact.createElement("Frame", {
+				Frame = React.createElement("Frame", {
 					ZIndex = Constants.ZIndex.Dropdown,
 					BackgroundTransparency = 1,
 					Size = UDim2.fromScale(1, 1),
-					[Roact.Event.InputBegan] = onCatcherInputBegan,
+					[React.Event.InputBegan] = onCatcherInputBegan,
 				}, {
 					-- rounding etc. here corrects for sub-pixel alignments
-					Drop = open and Roact.createElement(ScrollFrame, {
+					Drop = open and React.createElement(ScrollFrame, {
 						AnchorPoint = anchor,
 						Position = UDim2.fromOffset(math.round(pos.x) - 1, posy),
 						Size = UDim2.fromOffset(math.round(size.x) + 2, scrollHeight),
@@ -153,25 +153,25 @@ local function Dropdown(props, hooks)
 		end
 	end
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = UDim2.new(props.Width, UDim.new(0, props.RowHeightTop)),
 		Position = props.Position,
 		AnchorPoint = props.AnchorPoint,
 		BackgroundTransparency = 1,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		[Roact.Event.InputBegan] = onSelectedInputBegan,
-		[Roact.Event.InputEnded] = onSelectedInputEnded,
-		[Roact.Ref] = rootRef.value,
-		[Roact.Change.AbsolutePosition] = function()
+		[React.Event.InputBegan] = onSelectedInputBegan,
+		[React.Event.InputEnded] = onSelectedInputEnded,
+		[React.Ref] = rootRef.value,
+		[React.Change.AbsolutePosition] = function()
 			setOpen(false)
 		end,
-		[Roact.Change.AbsoluteSize] = function()
+		[React.Change.AbsoluteSize] = function()
 			setOpen(false)
 		end,
 	}, {
 		Catch = catcher,
-		Selected = Roact.createElement("TextLabel", {
+		Selected = React.createElement("TextLabel", {
 			Size = UDim2.fromScale(1, 1),
 			BackgroundColor3 = theme:GetColor(background, modifier),
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
@@ -183,20 +183,20 @@ local function Dropdown(props, hooks)
 			TextTruncate = Enum.TextTruncate.AtEnd,
 			ZIndex = 1,
 		}, {
-			Padding = Roact.createElement("UIPadding", {
+			Padding = React.createElement("UIPadding", {
 				PaddingLeft = UDim.new(0, TEXT_PADDING_LEFT),
 				PaddingRight = UDim.new(0, 12),
 				PaddingBottom = UDim.new(0, 1),
 			}),
 		}),
-		ArrowContainer = Roact.createElement("Frame", {
+		ArrowContainer = React.createElement("Frame", {
 			AnchorPoint = Vector2.new(1, 0),
 			Position = UDim2.fromScale(1, 0),
 			Size = UDim2.new(0, 18, 1, 0),
 			BackgroundTransparency = 1,
 			ZIndex = 2,
 		}, {
-			Arrow = Roact.createElement("ImageLabel", {
+			Arrow = React.createElement("ImageLabel", {
 				Image = "rbxassetid://7260137654",
 				AnchorPoint = Vector2.new(0.5, 0.5),
 				Position = UDim2.fromScale(0.5, 0.5),
@@ -205,10 +205,10 @@ local function Dropdown(props, hooks)
 				ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, modifier),
 			}),
 		}),
-		Children = Roact.createFragment(props[Roact.Children]),
+		Children = React.createFragment(props[React.Children]),
 	})
 end
 
-return Hooks.new(Roact)(Dropdown, {
+return Hooks.new(React)(Dropdown, {
 	defaultProps = defaultProps,
 })

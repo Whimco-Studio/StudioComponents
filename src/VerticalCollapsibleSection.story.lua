@@ -1,10 +1,10 @@
 local Packages = script.Parent.Parent
-local Roact = require(Packages.Roact)
+local React = require(Packages.Roact)
 
 local Label = require(script.Parent.Label)
 local VerticalCollapsibleSection = require(script.Parent.VerticalCollapsibleSection)
 
-local Wrapper = Roact.Component:extend("VerticalCollapsibleSectionWrapper")
+local Wrapper = React.Component:extend("VerticalCollapsibleSectionWrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -15,7 +15,7 @@ end
 function Wrapper:render()
 	local children = {}
 	for i = 1, 5 do
-		children[i] = Roact.createElement(Label, {
+		children[i] = React.createElement(Label, {
 			LayoutOrder = i,
 			Size = UDim2.new(1, 0, 0, 24),
 			Text = string.format("Entry%i", i),
@@ -24,12 +24,12 @@ function Wrapper:render()
 			BackgroundColor3 = Color3.fromHSV(0, 0, 0.2 - (i % 2) * 0.02),
 			TextXAlignment = Enum.TextXAlignment.Left,
 		}, {
-			Padding = Roact.createElement("UIPadding", {
+			Padding = React.createElement("UIPadding", {
 				PaddingLeft = UDim.new(0, 24),
 			}),
 		})
 	end
-	return Roact.createElement(VerticalCollapsibleSection, {
+	return React.createElement(VerticalCollapsibleSection, {
 		HeaderText = "Header",
 		Collapsed = self.state.Collapsed,
 		OnToggled = function()
@@ -41,9 +41,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

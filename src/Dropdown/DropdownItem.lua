@@ -1,6 +1,6 @@
 local TS = _G[script.Parent.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local Constants = require(script.Parent.Parent.Constants)
@@ -27,7 +27,7 @@ local function DropdownItem(props, hooks)
 		modifier = Enum.StudioStyleGuideModifier.Hover
 	end
 
-	return Roact.createElement("TextButton", {
+	return React.createElement("TextButton", {
 		AutoButtonColor = false,
 		LayoutOrder = props.LayoutOrder,
 		Size = UDim2.new(1, 0, 0, props.RowHeightItem),
@@ -39,17 +39,17 @@ local function DropdownItem(props, hooks)
 		TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextTruncate = Enum.TextTruncate.AtEnd,
-		[Roact.Event.InputBegan] = onInputBegan,
-		[Roact.Event.InputEnded] = onInputEnded,
-		[Roact.Event.Activated] = function()
+		[React.Event.InputBegan] = onInputBegan,
+		[React.Event.InputEnded] = onInputEnded,
+		[React.Event.Activated] = function()
 			props.OnSelected(props.Item)
 		end,
 	}, {
-		Padding = Roact.createElement("UIPadding", {
+		Padding = React.createElement("UIPadding", {
 			PaddingLeft = UDim.new(0, props.TextPaddingLeft - 1),
 			PaddingRight = UDim.new(0, props.TextPaddingRight),
 		}),
 	})
 end
 
-return Hooks.new(Roact)(DropdownItem)
+return Hooks.new(React)(DropdownItem)

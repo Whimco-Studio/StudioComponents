@@ -1,12 +1,12 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local joinDictionaries = require(script.Parent.joinDictionaries)
 local withTheme = require(script.Parent.withTheme)
 
 local Constants = require(script.Parent.Constants)
-local TextInput = Roact.Component:extend("TextInput")
+local TextInput = React.Component:extend("TextInput")
 
 local PLACEHOLDER_TEXT_COLOR = Color3.fromRGB(102, 102, 102) -- works for both themes
 
@@ -57,7 +57,7 @@ function TextInput:init()
 end
 
 function TextInput:render()
-	local padding = Roact.createElement("UIPadding", {
+	local padding = React.createElement("UIPadding", {
 		PaddingLeft = UDim.new(0, 5),
 		PaddingRight = UDim.new(0, 5),
 	})
@@ -85,19 +85,19 @@ function TextInput:render()
 			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
 			TextXAlignment = Enum.TextXAlignment.Left,
 		}
-		return self.props.Disabled and Roact.createElement("TextLabel", textFieldProps, { Padding = padding })
-			or Roact.createElement(
+		return self.props.Disabled and React.createElement("TextLabel", textFieldProps, { Padding = padding })
+			or React.createElement(
 				"TextBox",
 				joinDictionaries(textFieldProps, {
 					AnchorPoint = self.props.AnchorPoint,
 					PlaceholderText = self.props.PlaceholderText,
 					PlaceholderColor3 = PLACEHOLDER_TEXT_COLOR,
 					ClearTextOnFocus = self.props.ClearTextOnFocus,
-					[Roact.Event.Focused] = self.onFocused,
-					[Roact.Event.FocusLost] = self.onFocusLost,
-					[Roact.Event.InputBegan] = self.onInputBegan,
-					[Roact.Event.InputEnded] = self.onInputEnded,
-					[Roact.Change.Text] = self.onChanged,
+					[React.Event.Focused] = self.onFocused,
+					[React.Event.FocusLost] = self.onFocusLost,
+					[React.Event.InputBegan] = self.onInputBegan,
+					[React.Event.InputEnded] = self.onInputEnded,
+					[React.Change.Text] = self.onChanged,
 				}),
 				{
 					Padding = padding,

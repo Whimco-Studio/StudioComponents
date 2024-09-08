@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.useTheme)
@@ -10,13 +10,13 @@ local PADDING_BAR_SIDE = 3
 local PADDING_REGION_TOP = 1
 local PADDING_REGION_SIDE = 6
 
-local defaultBackground = Hooks.new(Roact)(function(props, hooks)
+local defaultBackground = Hooks.new(React)(function(props, hooks)
 	local theme = useTheme(hooks)
 	local mainModifier = Enum.StudioStyleGuideModifier.Default
 	if props.Disabled then
 		mainModifier = Enum.StudioStyleGuideModifier.Disabled
 	end
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
 		Size = UDim2.fromScale(1, 1),
 		BorderSizePixel = 0,
@@ -32,7 +32,7 @@ local defaultProps = {
 local function Slider(props, hooks)
 	local theme = useTheme(hooks)
 
-	local regionRef = hooks.useValue(Roact.createRef())
+	local regionRef = hooks.useValue(React.createRef())
 
 	local drag = useDragInput(hooks, function(_, position)
 		local range = props.Max - props.Min
@@ -74,7 +74,7 @@ local function Slider(props, hooks)
 	-- if we use a Frame here, the 2d studio selection rectangle will appear when dragging
 	-- we could prevent that using Active = true, but that displays the Click cursor
 	-- ... the best workaround is a TextButton with Active = false
-	return Roact.createElement("TextButton", {
+	return React.createElement("TextButton", {
 		Text = "",
 		Active = false,
 		AutoButtonColor = false,
@@ -84,22 +84,22 @@ local function Slider(props, hooks)
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
 		BackgroundTransparency = 1,
-		[Roact.Event.InputBegan] = if not props.Disabled then drag.onInputBegan else nil,
-		[Roact.Event.InputEnded] = if not props.Disabled then drag.onInputEnded else nil,
+		[React.Event.InputBegan] = if not props.Disabled then drag.onInputBegan else nil,
+		[React.Event.InputEnded] = if not props.Disabled then drag.onInputEnded else nil,
 	}, {
-		BackgroundHolder = Roact.createElement("Frame", {
+		BackgroundHolder = React.createElement("Frame", {
 			ZIndex = 0,
 			Size = UDim2.fromScale(1, 1),
 			BackgroundTransparency = 1,
 		}, {
-			Background = Roact.createElement(props.Background, {
+			Background = React.createElement(props.Background, {
 				Disabled = props.Disabled,
 				Hover = drag.hovered,
 				Dragging = drag.active,
 				Value = props.Value,
 			}),
 		}),
-		Bar = Roact.createElement("Frame", {
+		Bar = React.createElement("Frame", {
 			ZIndex = 1,
 			Position = UDim2.fromOffset(PADDING_BAR_SIDE, 10),
 			Size = UDim2.new(1, -PADDING_BAR_SIDE * 2, 0, 2),
@@ -111,14 +111,14 @@ local function Slider(props, hooks)
 				Enum.StudioStyleGuideModifier.Disabled
 			),
 		}),
-		HandleRegion = Roact.createElement("Frame", {
+		HandleRegion = React.createElement("Frame", {
 			ZIndex = 2,
 			Position = UDim2.fromOffset(PADDING_REGION_SIDE, PADDING_REGION_TOP),
 			Size = UDim2.new(1, -PADDING_REGION_SIDE * 2, 1, -PADDING_REGION_TOP * 2),
 			BackgroundTransparency = 1,
-			[Roact.Ref] = regionRef.value,
+			[React.Ref] = regionRef.value,
 		}, {
-			Handle = Roact.createElement("Frame", {
+			Handle = React.createElement("Frame", {
 				AnchorPoint = Vector2.new(0.5, 0),
 				Position = UDim2.fromScale(alpha, 0),
 				Size = UDim2.new(0, 10, 1, 0),
@@ -131,6 +131,6 @@ local function Slider(props, hooks)
 	})
 end
 
-return Hooks.new(Roact)(Slider, {
+return Hooks.new(React)(Slider, {
 	defaultProps = defaultProps,
 })

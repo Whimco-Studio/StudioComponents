@@ -2,7 +2,7 @@ local TextService = game:GetService("TextService")
 
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local Constants = require(script.Parent.Constants)
@@ -36,7 +36,7 @@ local function RadioButton(props, hooks)
 
 	local textSize = TextService:GetTextSize(props.Label, TEXT_SIZE, FONT, Vector2.new(math.huge, math.huge))
 
-	return Roact.createElement("TextButton", {
+	return React.createElement("TextButton", {
 		Active = true,
 		Text = "",
 		AnchorPoint = Vector2.new(0.5, 0.5),
@@ -45,49 +45,49 @@ local function RadioButton(props, hooks)
 		BackgroundTransparency = 1,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		[Roact.Event.InputBegan] = function(_, input)
+		[React.Event.InputBegan] = function(_, input)
 			if not props.Disabled and input.UserInputType == Enum.UserInputType.MouseMovement then
 				setHovered(true)
 			end
 		end,
-		[Roact.Event.InputEnded] = function(_, input)
+		[React.Event.InputEnded] = function(_, input)
 			if not props.Disabled and input.UserInputType == Enum.UserInputType.MouseMovement then
 				setHovered(false)
 			end
 		end,
-		[Roact.Event.Activated] = function()
+		[React.Event.Activated] = function()
 			if not props.Disabled then
 				props.OnActivated()
 			end
 		end,
 	}, {
-		Main = Roact.createElement("Frame", {
+		Main = React.createElement("Frame", {
 			Size = UDim2.fromOffset(HEIGHT - 4, HEIGHT - 4),
 			Position = UDim2.fromOffset(2, 2),
 			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Button, modifier),
 			BackgroundTransparency = props.Disabled and 0.65 or 0,
 		}, {
-			Corner = Roact.createElement("UICorner", {
+			Corner = React.createElement("UICorner", {
 				CornerRadius = UDim.new(0.5, 0),
 			}),
-			Stroke = Roact.createElement("UIStroke", {
+			Stroke = React.createElement("UIStroke", {
 				Color = theme:GetColor(secondaryColorStyle, modifier),
 				Thickness = 1,
 				Transparency = props.Disabled and 0.65 or 0,
 			}),
-			Inner = props.Value == true and Roact.createElement("Frame", {
+			Inner = props.Value == true and React.createElement("Frame", {
 				Size = UDim2.new(1, -4, 1, -4),
 				Position = UDim2.fromOffset(2, 2),
 				BackgroundColor3 = theme:GetColor(secondaryColorStyle, modifier),
 				BackgroundTransparency = props.Disabled and 0.65 or 0,
 				BorderSizePixel = 0,
 			}, {
-				Corner = Roact.createElement("UICorner", {
+				Corner = React.createElement("UICorner", {
 					CornerRadius = UDim.new(0.5, 0),
 				}),
 			}),
 		}),
-		Label = Roact.createElement("TextLabel", {
+		Label = React.createElement("TextLabel", {
 			BackgroundTransparency = 1,
 			Size = UDim2.new(0, textSize.X, 1, 0),
 			Position = UDim2.new(0, HEIGHT + TEXT_PADDING, 0, 0),
@@ -99,10 +99,10 @@ local function RadioButton(props, hooks)
 			TextSize = TEXT_SIZE,
 			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
 		}),
-		Children = Roact.createFragment(props[Roact.Children]),
+		Children = React.createFragment(props[React.Children]),
 	})
 end
 
-return Hooks.new(Roact)(RadioButton, {
+return Hooks.new(React)(RadioButton, {
 	defaultProps = defaultProps,
 })

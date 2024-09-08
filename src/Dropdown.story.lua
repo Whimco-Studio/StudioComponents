@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Dropdown = require(script.Parent.Dropdown)
 
@@ -10,7 +10,7 @@ local words = string.split(
 )
 table.insert(words, "Long final test dropdown option")
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -22,8 +22,8 @@ function Wrapper:init()
 end
 
 function Wrapper:render()
-	return Roact.createFragment({
-		Layout = Roact.createElement("UIGridLayout", {
+	return React.createFragment({
+		Layout = React.createElement("UIGridLayout", {
 			CellPadding = UDim2.new(0, 10, 0, 10),
 			CellSize = UDim2.new(0.3, 0, 0, 20),
 			SortOrder = Enum.SortOrder.LayoutOrder,
@@ -33,7 +33,7 @@ function Wrapper:render()
 			FillDirectionMaxCells = 2,
 		}),
 
-		Dropdown0 = Roact.createElement(Dropdown, {
+		Dropdown0 = React.createElement(Dropdown, {
 			LayoutOrder = 0,
 			Items = table.clone(words),
 			SelectedItem = self.state.Item0,
@@ -42,7 +42,7 @@ function Wrapper:render()
 			end,
 		}),
 
-		Dropdown1 = Roact.createElement(Dropdown, {
+		Dropdown1 = React.createElement(Dropdown, {
 			LayoutOrder = 1,
 			Items = table.clone(words),
 			SelectedItem = self.state.Item1,
@@ -51,7 +51,7 @@ function Wrapper:render()
 			end,
 		}),
 
-		Dropdown2 = Roact.createElement(Dropdown, {
+		Dropdown2 = React.createElement(Dropdown, {
 			LayoutOrder = 2,
 			Items = table.clone(words),
 			SelectedItem = self.state.Item2,
@@ -60,7 +60,7 @@ function Wrapper:render()
 			end,
 		}),
 
-		Dropdown3 = Roact.createElement(Dropdown, {
+		Dropdown3 = React.createElement(Dropdown, {
 			LayoutOrder = 3,
 			Items = table.clone(words),
 			SelectedItem = self.state.Item3,
@@ -73,9 +73,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

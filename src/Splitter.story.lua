@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Constants = require(script.Parent.Constants)
 
@@ -11,7 +11,7 @@ local Label = require(script.Parent.Label)
 local ScrollFrame = require(script.Parent.ScrollFrame)
 local Dropdown = require(script.Parent.Dropdown)
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -24,31 +24,31 @@ end
 function Wrapper:render()
 	local scrollContents = {}
 	for i = 1, 20 do
-		scrollContents[i] = Roact.createElement(Label, {
+		scrollContents[i] = React.createElement(Label, {
 			Size = UDim2.new(1, 0, 0, 20),
 			Text = "Item " .. i,
 			LayoutOrder = i,
 		})
 	end
 
-	return Roact.createElement(Splitter, {
+	return React.createElement(Splitter, {
 		Alpha = self.state.Alpha0,
 		OnAlphaChanged = function(newAlpha)
 			self:setState({ Alpha0 = newAlpha })
 		end,
 		Orientation = Constants.SplitterOrientation.Vertical,
 	}, {
-		[1] = Roact.createElement(ScrollFrame, {
+		[1] = React.createElement(ScrollFrame, {
 			Size = UDim2.fromScale(1, 1),
 		}, scrollContents),
-		[2] = Roact.createElement(Splitter, {
+		[2] = React.createElement(Splitter, {
 			Alpha = self.state.Alpha1,
 			OnAlphaChanged = function(newAlpha)
 				self:setState({ Alpha1 = newAlpha })
 			end,
 			Orientation = Constants.SplitterOrientation.Horizontal,
 		}, {
-			[1] = Roact.createElement(Splitter, {
+			[1] = React.createElement(Splitter, {
 				Alpha = self.state.Alpha2,
 				OnAlphaChanged = function(newAlpha)
 					self:setState({ Alpha2 = newAlpha })
@@ -56,16 +56,16 @@ function Wrapper:render()
 				Orientation = Constants.SplitterOrientation.Vertical,
 				Disabled = true,
 			}, {
-				[1] = Roact.createElement(Label, {
+				[1] = React.createElement(Label, {
 					Size = UDim2.fromScale(1, 1),
 					Text = "Side 2(1)(1)",
 				}),
-				[2] = Roact.createElement(Label, {
+				[2] = React.createElement(Label, {
 					Size = UDim2.fromScale(1, 1),
 					Text = "Side 2(1)(2)",
 				}),
 			}),
-			[2] = Roact.createElement(Dropdown, {
+			[2] = React.createElement(Dropdown, {
 				AnchorPoint = Vector2.new(0.5, 0.5),
 				Position = UDim2.fromScale(0.5, 0.5),
 				Width = UDim.new(0.4, 50),
@@ -82,13 +82,13 @@ return function(target)
 	-- this is a little hacky but acceptable since it's purely for the story
 	-- selene: allow(undefined_variable)
 	local plugin = PluginManager():CreatePlugin()
-	local element = Roact.createElement(PluginProvider, {
+	local element = React.createElement(PluginProvider, {
 		Plugin = plugin,
 	}, {
-		Main = Roact.createElement(Wrapper),
+		Main = React.createElement(Wrapper),
 	})
-	local handle = Roact.mount(element, target)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

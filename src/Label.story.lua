@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Label = require(script.Parent.Label)
 
@@ -19,31 +19,31 @@ return function(target)
 		if colorItem == Enum.StudioStyleGuideColor.MainText then
 			name ..= " (Default)"
 		end
-		textElements[i] = Roact.createElement(Label, {
+		textElements[i] = React.createElement(Label, {
 			LayoutOrder = i,
 			Size = UDim2.fromOffset(120, 16),
 			Text = name,
 			TextColorStyle = colorItem,
 		})
 	end
-	local element = Roact.createFragment({
-		Layout = Roact.createElement("UIListLayout", {
+	local element = React.createFragment({
+		Layout = React.createElement("UIListLayout", {
 			Padding = UDim.new(0, 5),
 			SortOrder = Enum.SortOrder.LayoutOrder,
 			FillDirection = Enum.FillDirection.Vertical,
 			HorizontalAlignment = Enum.HorizontalAlignment.Center,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 		}),
-		Roact.createElement(Label, {
+		DisabledLabel = React.createElement(Label, {
 			LayoutOrder = 0,
 			Size = UDim2.fromOffset(120, 32),
 			Text = "MainText (Disabled)",
 			Disabled = true,
 		}),
-		Roact.createFragment(textElements),
+		TextElements = React.createFragment(textElements),
 	})
-	local handle = Roact.mount(element, target)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

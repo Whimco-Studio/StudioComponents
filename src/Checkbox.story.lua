@@ -1,11 +1,11 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Checkbox = require(script.Parent.Checkbox)
 local Constants = require(script.Parent.Constants)
 
-local Wrapper = Roact.Component:extend("CheckboxWrapper")
+local Wrapper = React.Component:extend("CheckboxWrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -20,19 +20,19 @@ function Wrapper:render()
 	if state.Value0 == state.Value1 then
 		value2 = state.Value0
 	end
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Position = UDim2.fromScale(0.5, 0.5),
 		Size = UDim2.new(0, 200, 1, 0),
 		BackgroundTransparency = 1,
 	}, {
-		Layout = Roact.createElement("UIListLayout", {
+		Layout = React.createElement("UIListLayout", {
 			Padding = UDim.new(0, 5),
 			SortOrder = Enum.SortOrder.LayoutOrder,
 			FillDirection = Enum.FillDirection.Vertical,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 		}),
-		Checkbox0 = Roact.createElement(Checkbox, {
+		Checkbox0 = React.createElement(Checkbox, {
 			LayoutOrder = 0,
 			Value = state.Value0,
 			Label = "Value0",
@@ -40,7 +40,7 @@ function Wrapper:render()
 				self:setState({ Value0 = not state.Value0 })
 			end,
 		}),
-		Checkbox1 = Roact.createElement(Checkbox, {
+		Checkbox1 = React.createElement(Checkbox, {
 			LayoutOrder = 1,
 			Value = state.Value1,
 			Label = "Value1",
@@ -48,7 +48,7 @@ function Wrapper:render()
 				self:setState({ Value1 = not state.Value1 })
 			end,
 		}),
-		Checkbox2 = Roact.createElement(Checkbox, {
+		Checkbox2 = React.createElement(Checkbox, {
 			LayoutOrder = 2,
 			Value = value2,
 			Label = "Value0 & Value1",
@@ -63,24 +63,24 @@ function Wrapper:render()
 				})
 			end,
 		}),
-		Padding = Roact.createElement("Frame", {
+		Padding = React.createElement("Frame", {
 			BackgroundTransparency = 1,
 			Size = UDim2.new(1, 0, 0, 12),
 			LayoutOrder = 3,
 		}),
-		Checkbox3 = Roact.createElement(Checkbox, {
+		Checkbox3 = React.createElement(Checkbox, {
 			LayoutOrder = 4,
 			Value = true,
 			Disabled = true,
 			Label = "Disabled, true",
 		}),
-		Checkbox4 = Roact.createElement(Checkbox, {
+		Checkbox4 = React.createElement(Checkbox, {
 			LayoutOrder = 5,
 			Value = false,
 			Disabled = true,
 			Label = "Disabled, false",
 		}),
-		Checkbox5 = Roact.createElement(Checkbox, {
+		Checkbox5 = React.createElement(Checkbox, {
 			LayoutOrder = 6,
 			Value = Constants.CheckboxIndeterminate,
 			Disabled = true,
@@ -90,9 +90,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

@@ -1,16 +1,16 @@
 {
-	"name": "StudioComponentsDev",
-	"tree": {
-		"$className": "DataModel",
-		"ServerStorage": {
-			"$className": "ServerStorage",
-			"Packages": {
-				"$className": "Folder",
-				"$path": "Packages",
-				"StudioComponents": {
-					"$path": "src"
-				}
-			}
-		}
-	}
+  "name": "StudioComponentsDev",
+  "tree": {
+    "$className": "DataModel",
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "Packages": {
+        "$className": "Folder",
+        "$path": "Packages",
+        "StudioComponents": {
+          "$path": "src"
+        }
+      }
+    }
+  }
 }

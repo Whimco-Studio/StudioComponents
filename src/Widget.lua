@@ -1,11 +1,11 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local plugin = script:FindFirstAncestorWhichIsA("Plugin")
 local withTheme = require(script.Parent.withTheme)
 
-local Widget = Roact.Component:extend("Widget")
+local Widget = React.Component:extend("Widget")
 
 Widget.defaultProps = {
 	Title = "Widget.defaultProps.Title",
@@ -56,15 +56,15 @@ function Widget:didUpdate(prevProps)
 end
 
 function Widget:render()
-	return Roact.createElement(Roact.Portal, {
+	return React.createElement(React.Portal, {
 		target = self.widget,
 	}, {
 		Main = withTheme(function(theme)
-			return Roact.createElement("Frame", {
+			return React.createElement("Frame", {
 				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
 				BorderSizePixel = 0,
 				Size = UDim2.fromScale(1, 1),
-			}, self.props[Roact.Children])
+			}, self.props[React.Children])
 		end),
 	})
 end

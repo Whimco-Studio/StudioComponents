@@ -1,10 +1,10 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local RadioButton = require(script.Parent.RadioButton)
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({
@@ -17,7 +17,7 @@ function Wrapper:render()
 
 	local buttons = {}
 	for i = 1, count do
-		buttons[i] = Roact.createElement(RadioButton, {
+		buttons[i] = React.createElement(RadioButton, {
 			LayoutOrder = i,
 			Value = self.state.Selected == i,
 			Label = "Button" .. tostring(i),
@@ -28,22 +28,22 @@ function Wrapper:render()
 		})
 	end
 
-	return Roact.createFragment({
-		Layout = Roact.createElement("UIListLayout", {
+	return React.createFragment({
+		Layout = React.createElement("UIListLayout", {
 			Padding = UDim.new(0, 5),
 			SortOrder = Enum.SortOrder.LayoutOrder,
 			FillDirection = Enum.FillDirection.Vertical,
 			HorizontalAlignment = Enum.HorizontalAlignment.Center,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 		}),
-		Buttons = Roact.createFragment(buttons),
+		Buttons = React.createFragment(buttons),
 	})
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

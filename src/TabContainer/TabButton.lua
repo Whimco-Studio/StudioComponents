@@ -1,6 +1,6 @@
 local TS = _G[script.Parent.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.Parent.useTheme)
@@ -43,7 +43,7 @@ local function TabButton(props, hooks)
 		modifier = Enum.StudioStyleGuideModifier.Hover
 	end
 
-	return Roact.createElement("TextButton", {
+	return React.createElement("TextButton", {
 		AutoButtonColor = false,
 		BackgroundColor3 = theme:GetColor(color, modifier),
 		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
@@ -54,15 +54,15 @@ local function TabButton(props, hooks)
 		TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
 		TextTruncate = Enum.TextTruncate.AtEnd,
 		TextSize = 14,
-		[Roact.Event.InputBegan] = onInputBegan,
-		[Roact.Event.InputEnded] = onInputEnded,
-		[Roact.Event.Activated] = function()
+		[React.Event.InputBegan] = onInputBegan,
+		[React.Event.InputEnded] = onInputEnded,
+		[React.Event.Activated] = function()
 			if not props.Disabled then
 				props.OnActivated()
 			end
 		end,
 	}, {
-		Indicator = props.Selected and Roact.createElement("Frame", {
+		Indicator = props.Selected and React.createElement("Frame", {
 			BackgroundColor3 = Color3.fromRGB(0, 162, 255),
 			BackgroundTransparency = props.Disabled and 0.8 or 0,
 			BorderSizePixel = 0,
@@ -71,4 +71,4 @@ local function TabButton(props, hooks)
 	})
 end
 
-return Hooks.new(Roact)(TabButton)
+return Hooks.new(React)(TabButton)

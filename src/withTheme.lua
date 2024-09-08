@@ -1,10 +1,10 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local ThemeContext = require(script.Parent.ThemeContext)
 
-local StudioThemeProvider = Roact.Component:extend("StudioThemeProvider")
+local StudioThemeProvider = React.Component:extend("StudioThemeProvider")
 local studioSettings = settings().Studio
 
 function StudioThemeProvider:init()
@@ -20,28 +20,28 @@ function StudioThemeProvider:willUnmount()
 end
 
 function StudioThemeProvider:render()
-	local render = Roact.oneChild(self.props[Roact.Children])
+	local render = React.oneChild(self.props[React.Children])
 
-	return Roact.createElement(ThemeContext.Provider, {
+	return React.createElement(ThemeContext.Provider, {
 		value = self.state.studioTheme,
 	}, {
-		Consumer = Roact.createElement(ThemeContext.Consumer, {
+		Consumer = React.createElement(ThemeContext.Consumer, {
 			render = render,
-		})
+		}),
 	})
 end
 
 local function withTheme(render)
-	return Roact.createElement(ThemeContext.Consumer, {
+	return React.createElement(ThemeContext.Consumer, {
 		render = function(theme)
 			if theme then
 				return render(theme)
 			else
-				return Roact.createElement(StudioThemeProvider, {}, {
+				return React.createElement(StudioThemeProvider, {}, {
 					render = render,
 				})
 			end
-		end
+		end,
 	})
 end
 

@@ -1,11 +1,11 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local VerticalExpandingList = require(script.Parent.VerticalExpandingList)
 
 local CollapsibleSectionHeader = require(script.CollapsibleSectionHeader)
-local VerticalCollapsibleSection = Roact.Component:extend("VerticalCollapsibleSection")
+local VerticalCollapsibleSection = React.Component:extend("VerticalCollapsibleSection")
 
 VerticalCollapsibleSection.defaultProps = {
 	LayoutOrder = 0,
@@ -18,20 +18,20 @@ VerticalCollapsibleSection.defaultProps = {
 function VerticalCollapsibleSection:init() end
 
 function VerticalCollapsibleSection:render()
-	return Roact.createElement(VerticalExpandingList, {
+	return React.createElement(VerticalExpandingList, {
 		LayoutOrder = self.props.LayoutOrder,
 		ZIndex = self.props.ZIndex,
 		Padding = 1,
 	}, {
-		Header = Roact.createElement(CollapsibleSectionHeader, {
+		Header = React.createElement(CollapsibleSectionHeader, {
 			Text = self.props.HeaderText,
 			Collapsed = self.props.Collapsed,
 			OnToggled = self.props.OnToggled,
 		}),
-		Content = not self.props.Collapsed and Roact.createElement(VerticalExpandingList, {
+		Content = not self.props.Collapsed and React.createElement(VerticalExpandingList, {
 			LayoutOrder = 1,
 			BorderSizePixel = 0,
-		}, self.props[Roact.Children]),
+		}, self.props[React.Children]),
 	})
 end
 

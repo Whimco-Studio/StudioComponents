@@ -2,7 +2,7 @@ local TextService = game:GetService("TextService")
 
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local Constants = require(script.Parent.Constants)
@@ -27,7 +27,7 @@ local defaultProps = {
 
 local function Shadow(props, hooks)
 	local theme = useTheme(hooks)
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DropShadow),
 		BackgroundTransparency = props.Transparency,
 		BorderSizePixel = 0,
@@ -35,17 +35,17 @@ local function Shadow(props, hooks)
 		Size = props.Size,
 		ZIndex = 0,
 	}, {
-		Corner = Roact.createElement("UICorner", {
+		Corner = React.createElement("UICorner", {
 			CornerRadius = UDim.new(0, props.Radius),
 		}),
-		Children = Roact.createFragment(props[Roact.Children]),
+		Children = React.createFragment(props[React.Children]),
 	})
 end
-Shadow = Hooks.new(Roact)(Shadow)
+Shadow = Hooks.new(React)(Shadow)
 
 local function Tooltip(props, hooks)
 	local theme = useTheme(hooks)
-	local dummyRef = hooks.useValue(Roact.createRef())
+	local dummyRef = hooks.useValue(React.createRef())
 
 	local display, setDisplay = hooks.useState(false)
 	local displayPos = hooks.useValue(nil)
@@ -119,25 +119,25 @@ local function Tooltip(props, hooks)
 
 	local dropShadow = nil
 	if target ~= nil then
-		dropShadow = Roact.createElement(Shadow, {
+		dropShadow = React.createElement(Shadow, {
 			Position = UDim2.fromOffset(4, 4),
 			Size = UDim2.new(1, 1, 1, 1),
 			Radius = 5,
 			Transparency = 0.96,
 		}, {
-			Shadow = Roact.createElement(Shadow, {
+			Shadow = React.createElement(Shadow, {
 				Position = UDim2.fromOffset(1, 1),
 				Size = UDim2.new(1, -2, 1, -2),
 				Radius = 4,
 				Transparency = 0.88,
 			}, {
-				Shadow = Roact.createElement(Shadow, {
+				Shadow = React.createElement(Shadow, {
 					Position = UDim2.fromOffset(1, 1),
 					Size = UDim2.new(1, -2, 1, -2),
 					Radius = 3,
 					Transparency = 0.80,
 				}, {
-					Shadow = Roact.createElement(Shadow, {
+					Shadow = React.createElement(Shadow, {
 						Position = UDim2.fromOffset(1, 1),
 						Size = UDim2.new(1, -2, 1, -2),
 						Radius = 2,
@@ -148,26 +148,26 @@ local function Tooltip(props, hooks)
 		})
 	end
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = UDim2.fromScale(1, 1),
 		BackgroundTransparency = 1,
-		[Roact.Ref] = dummyRef.value,
-		[Roact.Event.InputBegan] = onInputBeganChanged,
-		[Roact.Event.InputChanged] = onInputBeganChanged,
-		[Roact.Event.InputEnded] = onInputEnded,
-		[Roact.Change.AbsolutePosition] = cancel,
+		[React.Ref] = dummyRef.value,
+		[React.Event.InputBegan] = onInputBeganChanged,
+		[React.Event.InputChanged] = onInputBeganChanged,
+		[React.Event.InputEnded] = onInputEnded,
+		[React.Change.AbsolutePosition] = cancel,
 	}, {
-		Portal = target and Roact.createElement(Roact.Portal, {
+		Portal = target and React.createElement(React.Portal, {
 			target = target,
 		}, {
-			Tooltip = Roact.createElement("Frame", {
+			Tooltip = React.createElement("Frame", {
 				ZIndex = Constants.ZIndex.Tooltip,
 				BackgroundTransparency = 1,
 				Size = UDim2.fromOffset(fullSize.x, fullSize.y),
 				AnchorPoint = anchor,
 				Position = UDim2.fromOffset(displayPos.value.x + offset.x, displayPos.value.y + offset.y),
 			}, {
-				Label = Roact.createElement("TextLabel", {
+				Label = React.createElement("TextLabel", {
 					ZIndex = 1,
 					Size = UDim2.fromScale(1, 1),
 					BackgroundTransparency = 0,
@@ -181,7 +181,7 @@ local function Tooltip(props, hooks)
 					BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
 					TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText),
 				}, {
-					Padding = Roact.createElement("UIPadding", {
+					Padding = React.createElement("UIPadding", {
 						PaddingLeft = UDim.new(0, TEXT_PADDING_SIDES),
 						PaddingRight = UDim.new(0, TEXT_PADDING_SIDES),
 						PaddingTop = UDim.new(0, TEXT_PADDING_TOP),
@@ -194,6 +194,6 @@ local function Tooltip(props, hooks)
 	})
 end
 
-return Hooks.new(Roact)(Tooltip, {
+return Hooks.new(React)(Tooltip, {
 	defaultProps = defaultProps,
 })

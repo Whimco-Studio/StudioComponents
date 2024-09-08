@@ -1,11 +1,11 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local ColorPicker = require(script.Parent.ColorPicker)
 local Label = require(script.Parent.Label)
 
-local Wrapper = Roact.Component:extend("Wrapper")
+local Wrapper = React.Component:extend("Wrapper")
 
 function Wrapper:init()
 	self:setState({ Color = Color3.fromRGB(128, 196, 92) })
@@ -13,22 +13,22 @@ end
 
 function Wrapper:render()
 	local color = self.state.Color
-	return Roact.createFragment({
-		Layout = Roact.createElement("UIListLayout", {
+	return React.createFragment({
+		Layout = React.createElement("UIListLayout", {
 			SortOrder = Enum.SortOrder.LayoutOrder,
 			FillDirection = Enum.FillDirection.Vertical,
 			HorizontalAlignment = Enum.HorizontalAlignment.Center,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 			Padding = UDim.new(0, 25),
 		}),
-		Picker = Roact.createElement(ColorPicker, {
+		Picker = React.createElement(ColorPicker, {
 			Size = UDim2.fromOffset(250, 200),
 			Color = color,
 			OnChange = function(newColor)
 				self:setState({ Color = newColor })
 			end,
 		}),
-		Swatch = Roact.createElement("TextLabel", {
+		Swatch = React.createElement("TextLabel", {
 			LayoutOrder = 1,
 			Size = UDim2.fromOffset(250, 30),
 			BackgroundColor3 = color,
@@ -38,7 +38,7 @@ function Wrapper:render()
 			TextColor3 = Color3.fromRGB(255, 255, 255),
 			TextStrokeTransparency = 0.5,
 		}, {
-			Disclaimer = Roact.createElement(Label, {
+			Disclaimer = React.createElement(Label, {
 				Position = UDim2.fromScale(0, 1),
 				Size = UDim2.fromScale(1, 1),
 				BackgroundTransparency = 1,
@@ -50,9 +50,9 @@ function Wrapper:render()
 end
 
 return function(target)
-	local element = Roact.createElement(Wrapper)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Wrapper)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

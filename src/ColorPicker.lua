@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.useTheme)
@@ -62,14 +62,14 @@ local function ColorPicker(props, hooks)
 	local hue, sat, val = unpack(hsv.value)
 	local indicatorBackground = if val > 0.4 then Color3.new() else Color3.fromRGB(200, 200, 200)
 
-	return Roact.createElement("Frame", {
+	return React.createElement("Frame", {
 		Size = props.Size,
 		Position = props.Position,
 		AnchorPoint = props.AnchorPoint,
 		BackgroundTransparency = 1,
 	}, {
 		-- using TextButton prevents the studio drag-selection box appearing
-		Slider = Roact.createElement("TextButton", {
+		Slider = React.createElement("TextButton", {
 			Active = false,
 			AutoButtonColor = false,
 			Text = "",
@@ -78,14 +78,14 @@ local function ColorPicker(props, hooks)
 			Position = UDim2.new(1, -6, 0, 0),
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-			[Roact.Event.InputBegan] = barDrag.onInputBegan,
-			[Roact.Event.InputEnded] = barDrag.onInputEnded,
+			[React.Event.InputBegan] = barDrag.onInputBegan,
+			[React.Event.InputEnded] = barDrag.onInputEnded,
 		}, {
-			Gradient = Roact.createElement("UIGradient", {
+			Gradient = React.createElement("UIGradient", {
 				Color = ColorSequence.new(Color3.fromRGB(0, 0, 0), Color3.fromHSV(hue, sat, 1)),
 				Rotation = 270,
 			}),
-			Arrow = Roact.createElement("ImageLabel", {
+			Arrow = React.createElement("ImageLabel", {
 				AnchorPoint = Vector2.new(0, 0.5),
 				Size = UDim2.fromOffset(5, 9),
 				Position = UDim2.new(1, 1, 1 - val, 0),
@@ -95,50 +95,50 @@ local function ColorPicker(props, hooks)
 			}),
 		}),
 		-- see above re: TextButton for why ImageButton is used here
-		Region = Roact.createElement("ImageButton", {
+		Region = React.createElement("ImageButton", {
 			Active = false,
 			AutoButtonColor = false,
 			Size = UDim2.new(1, -30, 1, 0),
 			Image = "",
 			ClipsDescendants = true,
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
-			[Roact.Event.InputBegan] = regionDrag.onInputBegan,
-			[Roact.Event.InputEnded] = regionDrag.onInputEnded,
+			[React.Event.InputBegan] = regionDrag.onInputBegan,
+			[React.Event.InputEnded] = regionDrag.onInputEnded,
 		}, {
-			Indicator = Roact.createElement("Frame", {
+			Indicator = React.createElement("Frame", {
 				AnchorPoint = Vector2.new(0.5, 0.5),
 				Position = UDim2.new(1 - hue, 0, 1 - sat, 0),
 				Size = UDim2.fromOffset(20, 20),
 				BackgroundTransparency = 1,
 			}, {
-				Vertical = Roact.createElement("Frame", {
+				Vertical = React.createElement("Frame", {
 					Position = UDim2.fromOffset(9, 0),
 					Size = UDim2.new(0, 2, 1, 0),
 					BorderSizePixel = 0,
 					BackgroundColor3 = indicatorBackground,
 				}),
-				Horizontal = Roact.createElement("Frame", {
+				Horizontal = React.createElement("Frame", {
 					Position = UDim2.fromOffset(0, 9),
 					Size = UDim2.new(1, 0, 0, 2),
 					BorderSizePixel = 0,
 					BackgroundColor3 = indicatorBackground,
 				}),
 			}),
-			HueGradient = Roact.createElement("Frame", {
+			HueGradient = React.createElement("Frame", {
 				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 				Size = UDim2.fromScale(1, 1),
 				ZIndex = -1,
 			}, {
-				Gradient = Roact.createElement("UIGradient", {
+				Gradient = React.createElement("UIGradient", {
 					Color = generateHueKeypoints(val),
 				}),
 			}),
-			SaturationGradient = Roact.createElement("Frame", {
+			SaturationGradient = React.createElement("Frame", {
 				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 				Size = UDim2.fromScale(1, 1),
 				ZIndex = 0,
 			}, {
-				Gradient = Roact.createElement("UIGradient", {
+				Gradient = React.createElement("UIGradient", {
 					Color = ColorSequence.new(Color3.fromHSV(1, 0, val)),
 					Transparency = NumberSequence.new(1, 0),
 					Rotation = 90,
@@ -148,6 +148,6 @@ local function ColorPicker(props, hooks)
 	})
 end
 
-return Hooks.new(Roact)(ColorPicker, {
+return Hooks.new(React)(ColorPicker, {
 	defaultProps = defaultProps,
 })

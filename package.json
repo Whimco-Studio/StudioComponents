@@ -1,10 +1,10 @@
 {
-  "name": "@rbxts/studiocomponents",
+  "name": "@rbxts/studiocomponents-react",
   "version": "0.1.7",
   "main": "src/init.lua",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Rudy-Dev/StudioComponents.git"
+    "url": "git+https://github.com/Rudy-Dev/StudioComponents.git"
   },
   "author": "sircfenner, RudyDev",
   "license": "MIT",
@@ -14,12 +14,36 @@
     "access": "public"
   },
   "devDependencies": {
-    "@rbxts/compiler-types": "^2.1.0-types.1",
-    "@rbxts/types": "^1.0.664",
-    "prettier": "^2.8.4"
+    "@rbxts/compiler-types": "^2.3.0-types.2",
+    "@rbxts/types": "^1.0.804",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-roblox-ts": "^0.0.36",
+    "prettier": "^3.3.3",
+    "roblox-ts": "^2.3.0-dev-6d64be9",
+    "typescript": "^5.5.4"
   },
   "peerDependencies": {
     "@rbxts/roact": "^1.4.4-ts.0",
     "@rbxts/roact-hooks": "^0.4.1-ts.3"
-  }
+  },
+  "dependencies": {
+    "@rbxts/react": "^0.4.0",
+    "@rbxts/react-roblox": "^0.4.0",
+    "roblox-ts": "^2.3.0"
+  },
+  "description": "A forked version of @rbxts/studiocomponents migrated over to @rbxts/react",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Rudy-Dev/StudioComponents/issues"
+  },
+  "homepage": "https://github.com/Rudy-Dev/StudioComponents#readme"
 }

@@ -1,10 +1,10 @@
 local TS = _G[script.Parent.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local withTheme = require(script.Parent.Parent.withTheme)
 
-local ScrollBarHandle = Roact.Component:extend("ScrollBarHandle")
+local ScrollBarHandle = React.Component:extend("ScrollBarHandle")
 
 function ScrollBarHandle:init()
 	self:setState({
@@ -78,7 +78,7 @@ function ScrollBarHandle:render()
 		modifier = Enum.StudioStyleGuideModifier.Pressed
 	end
 	return withTheme(function(theme)
-		return Roact.createElement("TextButton", {
+		return React.createElement("TextButton", {
 			AutoButtonColor = false,
 			AnchorPoint = self.props.AnchorPoint,
 			Position = self.props.Position,
@@ -86,9 +86,9 @@ function ScrollBarHandle:render()
 			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
 			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
 			Text = "",
-			[Roact.Event.InputBegan] = self.onInputBegan,
-			[Roact.Event.InputChanged] = self.onInputChanged,
-			[Roact.Event.InputEnded] = self.onInputEnded,
+			[React.Event.InputBegan] = self.onInputBegan,
+			[React.Event.InputChanged] = self.onInputChanged,
+			[React.Event.InputEnded] = self.onInputEnded,
 		})
 	end)
 end

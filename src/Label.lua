@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local useTheme = require(script.Parent.useTheme)
@@ -35,9 +35,9 @@ local function Label(props, hooks)
 	joinedProps.Disabled = nil
 	joinedProps.TextColorStyle = nil
 
-	return Roact.createElement("TextLabel", joinedProps)
+	return React.createElement("TextLabel", joinedProps)
 end
 
-return Hooks.new(Roact)(Label, {
+return Hooks.new(React)(Label, {
 	defaultProps = defaultProps,
 })

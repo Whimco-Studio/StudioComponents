@@ -1,6 +1,6 @@
 {
-	"name": "StudioComponents",
-	"tree": {
-		"$path": "src"
-	}
+  "name": "StudioComponents",
+  "tree": {
+    "$path": "out"
+  }
 }

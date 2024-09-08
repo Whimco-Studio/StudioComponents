@@ -1,13 +1,13 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 
 local Background = require(script.Parent.Background)
 
 return function(target)
-	local element = Roact.createElement(Background)
-	local handle = Roact.mount(element, target)
+	local element = React.createElement(Background)
+	local handle = React.mount(element, target)
 	return function()
-		Roact.unmount(handle)
+		React.unmount(handle)
 	end
 end

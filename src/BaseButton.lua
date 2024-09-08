@@ -1,6 +1,6 @@
 local TS = _G[script.Parent]
 
-local Roact = TS.import(script, TS.getModule(script, "@rbxts", "roact").src)
+local React = TS.import(script, TS.getModule(script, "@rbxts", "react").src)
 local Hooks = TS.import(script, TS.getModule(script, "@rbxts", "roact-hooks").src)
 
 local joinDictionaries = require(script.Parent.joinDictionaries)
@@ -23,12 +23,12 @@ local defaultProps = {
 }
 
 local propsToScrub = {
-	Disabled = Roact.None,
-	Selected = Roact.None,
-	TextColorStyle = Roact.None,
-	BackgroundColorStyle = Roact.None,
-	BorderColorStyle = Roact.None,
-	OnActivated = Roact.None,
+	Disabled = React.None,
+	Selected = React.None,
+	TextColorStyle = React.None,
+	BackgroundColorStyle = React.None,
+	BorderColorStyle = React.None,
+	OnActivated = React.None,
 }
 
 local function BaseButton(props, hooks)
@@ -84,14 +84,14 @@ local function BaseButton(props, hooks)
 		BorderColor3 = theme:GetColor(props.BorderColorStyle, modifier),
 		BorderMode = Enum.BorderMode.Inset,
 		AutoButtonColor = false,
-		[Roact.Event.InputBegan] = onInputBegan,
-		[Roact.Event.InputEnded] = onInputEnded,
-		[Roact.Event.Activated] = onActivated,
+		[React.Event.InputBegan] = onInputBegan,
+		[React.Event.InputEnded] = onInputEnded,
+		[React.Event.Activated] = onActivated,
 	})
 
-	return Roact.createElement("TextButton", scrubbedProps)
+	return React.createElement("TextButton", scrubbedProps)
 end
 
-return Hooks.new(Roact)(BaseButton, {
+return Hooks.new(React)(BaseButton, {
 	defaultProps = defaultProps,
 })
